@@ -1,10 +1,23 @@
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.lang.Character;
+import java.io.FileNotFoundException;
 
 public class day1 {
-    public static void main(String args[]) throws FileNotFoundException {
+    public static HashMap<String, Integer> numberMapping = new HashMap<String, Integer>() {{
+        put("one", 1);
+        put("two", 2);
+        put("three", 3);
+        put("four", 4);
+        put("five", 5);
+        put("six", 6);
+        put("seven", 7);
+        put("eight", 8);
+        put("nine", 9);
+    }};
+
+    public static int runPartOne() throws FileNotFoundException {
         File inputFile = new File("day1-actual.txt");
         Scanner scanner = new Scanner(inputFile);
 
@@ -39,8 +52,15 @@ public class day1 {
         }
         scanner.close();
 
-        System.out.println(totalValue); 
+        return totalValue; 
         // ^^ Passes on sample text with value of 142
         // ^^ Passes on actual text with value of 53080
     }
+
+
+    public static void main(String args[]) throws FileNotFoundException {
+        int partOne = runPartOne();
+        System.out.println(partOne);
+    }
+
 }

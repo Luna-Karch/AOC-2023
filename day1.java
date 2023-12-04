@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 
 public class day1 {
     public static HashMap<String, String> numberMapping = new HashMap<String, String>() {{
-        put("zero", "0");
         put("one", "1");
         put("two", "2");
         put("three", "3");
@@ -16,7 +15,6 @@ public class day1 {
         put("seven", "7");
         put("eight", "8");
         put("nine", "9");
-        put("0", "0");
         put("1", "1");
         put("2", "2");
         put("3", "3");
@@ -69,11 +67,12 @@ public class day1 {
     }
 
     public static int runPartTwo() throws FileNotFoundException {
-        File inputFile = new File("day1-sample-2.txt");
+        File inputFile = new File("day1-actual.txt");
         Scanner scanner = new Scanner(inputFile);
 
         int totalValue = 0;
 
+        int lineCounter = 1;
         while (scanner.hasNextLine()) {
             String currentLine = scanner.nextLine();    
             HashMap<String, Integer> lineStats = new HashMap<String, Integer>();
@@ -114,12 +113,19 @@ public class day1 {
             });
 
             int valueAsInt = Integer.parseInt(numberMapping.get(minmaxkeys[1]) + numberMapping.get(minmaxkeys[0]));
+            System.out.println(String.format("Line: %d", lineCounter));
+            lineCounter++;
+            System.out.println(String.format("Keys: %s, %s", minmaxkeys[1], minmaxkeys[0]));
+            System.out.println(String.format("Value: %d", valueAsInt));
             totalValue += valueAsInt; 
+            System.out.println(String.format("New Total: %d", totalValue));
         }
         scanner.close();
 
         return totalValue;
-    }
+    } 
+    // ^^ Passes Sample Text with value of 281
+    // ^^ Fails Actual Text with value of 52839
 
     public static void main(String args[]) throws FileNotFoundException {
         int partOne = runPartOne();
@@ -127,5 +133,4 @@ public class day1 {
         int partTwo = runPartTwo();
         System.out.println(String.format("Part Two: %d", partTwo));
     }
-
 }

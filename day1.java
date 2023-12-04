@@ -5,16 +5,16 @@ import java.lang.Character;
 import java.io.FileNotFoundException;
 
 public class day1 {
-    public static HashMap<String, Integer> numberMapping = new HashMap<String, Integer>() {{
-        put("one", 1);
-        put("two", 2);
-        put("three", 3);
-        put("four", 4);
-        put("five", 5);
-        put("six", 6);
-        put("seven", 7);
-        put("eight", 8);
-        put("nine", 9);
+    public static HashMap<String, String> numberMapping = new HashMap<String, String>() {{
+        put("one", "1");
+        put("two", "2");
+        put("three", "3");
+        put("four", "4");
+        put("five", "5");
+        put("six", "6");
+        put("seven", "7");
+        put("eight", "8");
+        put("nine", "9");
     }};
 
     public static int runPartOne() throws FileNotFoundException {
@@ -55,6 +55,11 @@ public class day1 {
         return totalValue; 
         // ^^ Passes on sample text with value of 142
         // ^^ Passes on actual text with value of 53080
+    }
+
+    public static int runPartTwo() throws FileNotFoundException {
+        // Implement Part 2
+        return 0;
     }
 
 

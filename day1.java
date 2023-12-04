@@ -5,7 +5,7 @@ import java.lang.Character;
 
 public class day1 {
     public static void main(String args[]) throws FileNotFoundException {
-        File inputFile = new File("day1-sample.txt");
+        File inputFile = new File("day1-actual.txt");
         Scanner scanner = new Scanner(inputFile);
 
         char leftSide = ' ';
@@ -41,5 +41,6 @@ public class day1 {
 
         System.out.println(totalValue); 
         // ^^ Passes on sample text with value of 142
+        // ^^ Passes on actual text with value of 53080
     }
 }

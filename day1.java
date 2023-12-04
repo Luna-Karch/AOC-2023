@@ -58,6 +58,16 @@ public class day1 {
     }
 
     public static int runPartTwo() throws FileNotFoundException {
+        File inputFile = new File("day1-sample-2.txt");
+        Scanner scanner = new Scanner(inputFile);
+
+        while (scanner.hasNextLine()) {
+            String currentLine = scanner.nextLine();
+            System.out.println(currentLine);
+            // ^^ Just printing the output of each line for now
+        }
+        scanner.close();
+
         // Implement Part 2
         return 0;
     }
@@ -65,7 +75,9 @@ public class day1 {
 
     public static void main(String args[]) throws FileNotFoundException {
         int partOne = runPartOne();
-        System.out.println(partOne);
+        System.out.println(String.format("Part One: %d", partOne));
+        int partTwo = runPartTwo();
+        System.out.println(String.format("Part Two: %d", partTwo));
     }
 
 }

@@ -11,6 +11,8 @@ public class day1 {
         char leftSide = ' ';
         char rightSide = ' ';
 
+        int totalValue = 0;
+
         while (scanner.hasNextLine()) {
             String currentLine = scanner.nextLine();
 
@@ -28,12 +30,16 @@ public class day1 {
                 }
             }
 
-            // Get values from leftSide and rightSide
+            String beforeResult = "" + leftSide + rightSide;
+            totalValue += Integer.parseInt(beforeResult);
 
             leftSide = ' ';
             rightSide = ' '; 
             // ^^ Resetting the values on either side after going to the next line
         }
         scanner.close();
+
+        System.out.println(totalValue); 
+        // ^^ Passes on sample text with value of 142
     }
 }

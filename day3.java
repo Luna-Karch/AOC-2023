@@ -9,6 +9,7 @@ public class day3 {
         File inputFile = new File("day3-sample.txt");
         Scanner scanner = new Scanner(inputFile);
         ArrayList<String> fileData = new ArrayList<String>();
+        int totalSum = 0;
 
         while (scanner.hasNextLine()) {
             String currentLine = scanner.nextLine();
@@ -30,10 +31,10 @@ public class day3 {
                     digitMode = false;
 
                     NumberAndLocation numberValues = new NumberAndLocation(numberBuffer, indexBuffer, fileData.size(), fileData.get(0).length());
-                    System.out.println(numberValues.getValue());
-                    System.out.println(numberValues.getCoordinates());
-                    numberValues.checkCoordinates();
-                    System.out.println();
+
+                    if (numberValues.checkCoordinates(fileData)) {
+                        totalSum += numberValues.getValue();
+                    }
 
                     numberBuffer.clear();
                     indexBuffer.clear();
@@ -53,11 +54,11 @@ public class day3 {
             }
         }
 
-        return 0;
+        return totalSum;
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        runPartOne();
+        System.out.println(String.format("Part One: %d", runPartOne()));
     }
 }
 
@@ -157,10 +158,20 @@ class NumberAndLocation {
         return result;
     }
 
-    public boolean checkCoordinates() {
-        System.out.println("CHECKABLE COORDINATES:");
-        System.out.println(this.getCheckableCoordinates());
-        return true;
+    public boolean checkCoordinates(ArrayList<String> fileData) {
+        for (ArrayList<Integer> pair : this.getCheckableCoordinates()) {
+            int column = pair.get(0);
+            int row = pair.get(1);
+
+            char fileMatch = fileData.get(row).charAt(column);
+            
+            if (!(Character.isDigit(fileMatch)) && fileMatch != '.') {
+                return true;
+            }
+
+        }
+        
+        return false;
     }
 
 }

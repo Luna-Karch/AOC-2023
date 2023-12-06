@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 public class day3 {
 
     public static int runPartOne() throws FileNotFoundException {
-        File inputFile = new File("day3-sample.txt");
+        File inputFile = new File("day3-actual.txt");
         Scanner scanner = new Scanner(inputFile);
         ArrayList<String> fileData = new ArrayList<String>();
         int totalSum = 0;
@@ -31,6 +31,8 @@ public class day3 {
                     digitMode = false;
 
                     NumberAndLocation numberValues = new NumberAndLocation(numberBuffer, indexBuffer, fileData.size(), fileData.get(0).length());
+
+                    System.out.println(String.format("{%d} -> %b", numberValues.getValue(), numberValues.checkCoordinates(fileData)));
 
                     if (numberValues.checkCoordinates(fileData)) {
                         totalSum += numberValues.getValue();

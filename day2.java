@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 
 public class day2 {
     public static int runPartOne() throws FileNotFoundException {
-        File inputFile = new File("day2-sample.txt");
+        File inputFile = new File("day2-actual.txt");
         Scanner scanner = new Scanner(inputFile);
 
         int totalPossible = 0;

@@ -20,6 +20,19 @@ public class day3 {
         return true;
     }
 
+    public static boolean lineHasSymbol(String line) {
+        // Iterates through a line and determines if any symbols are present
+
+        boolean symbolFound = false;
+        for (int i = 0; i < line.length(); i++) {
+            if (isSymbol(line.charAt(i))) {
+                symbolFound = true;
+            }
+        }
+        return symbolFound;
+
+    }
+
     public static int runPartOne() throws FileNotFoundException {
         File inputFile = new File("day3-sample.txt");
         Scanner scanner = new Scanner(inputFile);

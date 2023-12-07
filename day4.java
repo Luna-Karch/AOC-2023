@@ -15,7 +15,9 @@ public class day4 {
         int totalPoints = 0;
         while (scanner.hasNextLine()) {
             String currentLine = scanner.nextLine().trim();
-            System.out.println(currentLine);
+            lineAnalyzer analyzer = new lineAnalyzer(currentLine);
+
+            System.out.println(analyzer.getYourNumbers());
         }
         scanner.close();
 
@@ -32,5 +34,19 @@ class lineAnalyzer {
 
     public String getRaw() {
         return this.raw;
+    }
+
+    public int getGameNumber() {
+        return Integer.parseInt(this.raw.split(": ")[0].split(" ")[1]);
+    }
+
+    public ArrayList<Integer> getYourNumbers() {
+        ArrayList<Integer> yourNumbers = new ArrayList<Integer>();
+
+        for (String number: this.raw.split(": ")[1].split("[|]")[0].trim().split("\\s+")) {
+            yourNumbers.add(Integer.parseInt(number));
+        }
+
+        return yourNumbers;
     }
 }

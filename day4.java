@@ -9,7 +9,7 @@ public class day4 {
     }
 
     public static int runPartOne() throws FileNotFoundException {
-        File inputFile = new File("day4-sample.txt");
+        File inputFile = new File("day4-actual.txt");
         Scanner scanner = new Scanner(inputFile);
 
         int totalPoints = 0;
@@ -73,7 +73,7 @@ class lineAnalyzer {
     }
 
     private int findGameNumber() {
-        return Integer.parseInt(this.raw.split(": ")[0].split(" ")[1]);
+        return Integer.parseInt(this.raw.split(": ")[0].split("\\s+")[1]);
     }
 
     private ArrayList<Integer> findYourNumbers() {

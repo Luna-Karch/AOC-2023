@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 
 public class day4 {
     public static void main(String args[]) throws FileNotFoundException {
-        runPartOne();
+        System.out.println(String.format("Part One: %d", runPartOne()));
     }
 
     public static int runPartOne() throws FileNotFoundException {
@@ -16,7 +16,13 @@ public class day4 {
         while (scanner.hasNextLine()) {
             String currentLine = scanner.nextLine().trim();
             lineAnalyzer analyzer = new lineAnalyzer(currentLine);
-            System.out.println(analyzer.getRaw());
+            ArrayList<Integer> yourWinningNumbers = analyzer.calculateYourWinningNumbers();
+
+            if (yourWinningNumbers.size() == 0) {
+                continue;
+            }
+
+            totalPoints += Math.pow(2, yourWinningNumbers.size() - 1);
         }
         scanner.close();
 
@@ -54,6 +60,18 @@ class lineAnalyzer {
         return this.winningNumbers;
     }
 
+    public ArrayList<Integer> calculateYourWinningNumbers() {
+        ArrayList<Integer> yourWinningNumbers = new ArrayList<Integer>();
+
+        for (int yourNumber: this.yourNumbers) {
+            if (this.winningNumbers.contains(yourNumber)) {
+                yourWinningNumbers.add(yourNumber);
+            }
+        }
+
+        return yourWinningNumbers;
+    }
+
     private int findGameNumber() {
         return Integer.parseInt(this.raw.split(": ")[0].split(" ")[1]);
     }
@@ -61,7 +79,7 @@ class lineAnalyzer {
     private ArrayList<Integer> findYourNumbers() {
         ArrayList<Integer> yourNumbers = new ArrayList<Integer>();
 
-        for (String number: this.raw.split(": ")[1].split("[|]")[0].trim().split("\\s+")) {
+        for (String number: this.raw.split(": ")[1].split("[|]")[1].trim().split("\\s+")) {
             yourNumbers.add(Integer.parseInt(number));
         }
 
@@ -71,7 +89,7 @@ class lineAnalyzer {
     private ArrayList<Integer> findWinningNumbers() {
         ArrayList<Integer> winningNumbers = new ArrayList<Integer>();
         
-        for (String number: this.raw.split(": ")[1].split("[|]")[1].trim().split("\\s+")) {
+        for (String number: this.raw.split(": ")[1].split("[|]")[0].trim().split("\\s+")) {
             winningNumbers.add(Integer.parseInt(number));
         }
 

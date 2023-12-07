@@ -16,8 +16,7 @@ public class day4 {
         while (scanner.hasNextLine()) {
             String currentLine = scanner.nextLine().trim();
             lineAnalyzer analyzer = new lineAnalyzer(currentLine);
-
-            System.out.println(analyzer.getYourNumbers());
+            System.out.println(analyzer.getRaw());
         }
         scanner.close();
 
@@ -27,9 +26,16 @@ public class day4 {
 
 class lineAnalyzer {
     private String raw;
+    private int gameNumber;
+    private ArrayList<Integer> winningNumbers;
+    private ArrayList<Integer> yourNumbers;
 
     public lineAnalyzer(String line) {
         this.raw = line;
+
+        this.winningNumbers = this.findWinningNumbers();
+        this.yourNumbers = this.findYourNumbers();
+        this.gameNumber = this.findGameNumber();
     }
 
     public String getRaw() {
@@ -37,10 +43,22 @@ class lineAnalyzer {
     }
 
     public int getGameNumber() {
-        return Integer.parseInt(this.raw.split(": ")[0].split(" ")[1]);
+        return this.gameNumber;
     }
 
     public ArrayList<Integer> getYourNumbers() {
+        return this.yourNumbers;
+    }
+
+    public ArrayList<Integer> getWinningNumbers() {
+        return this.winningNumbers;
+    }
+
+    private int findGameNumber() {
+        return Integer.parseInt(this.raw.split(": ")[0].split(" ")[1]);
+    }
+
+    private ArrayList<Integer> findYourNumbers() {
         ArrayList<Integer> yourNumbers = new ArrayList<Integer>();
 
         for (String number: this.raw.split(": ")[1].split("[|]")[0].trim().split("\\s+")) {
@@ -48,5 +66,15 @@ class lineAnalyzer {
         }
 
         return yourNumbers;
+    }
+
+    private ArrayList<Integer> findWinningNumbers() {
+        ArrayList<Integer> winningNumbers = new ArrayList<Integer>();
+        
+        for (String number: this.raw.split(": ")[1].split("[|]")[1].trim().split("\\s+")) {
+            winningNumbers.add(Integer.parseInt(number));
+        }
+
+        return winningNumbers;
     }
 }

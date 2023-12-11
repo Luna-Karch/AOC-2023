@@ -16,6 +16,9 @@ public class day4 {
         while (scanner.hasNextLine()) {
             String currentLine = scanner.nextLine().trim();
             lineAnalyzerPartTwo analyzer = new lineAnalyzerPartTwo(currentLine);
+            int gameNumber = analyzer.getGameNumber();
+            int winningNumberCount = analyzer.getWinningNumberCount();
+            System.out.println(String.format("Game #%d: %d", gameNumber, winningNumberCount));
         }
         scanner.close();
 
@@ -114,13 +117,19 @@ class lineAnalyzerPartOne {
 class lineAnalyzerPartTwo {
     private String raw;
     private int gameNumber;
+    private int winningNumberCount;
     
     public lineAnalyzerPartTwo(String line) {
         this.raw = line;
         this.gameNumber = this.findGameNumber();
+        this.winningNumberCount = findWinningNumberCount();
     }
 
-    public int winningNumberCount() {
+    public int getWinningNumberCount() {
+        return this.winningNumberCount;
+    }
+
+    private int findWinningNumberCount() {
         ArrayList<Integer> yourNumbers = new ArrayList<>();
         for (String number: this.raw.split("\\|")[1].trim().split("\\s+")) {
             yourNumbers.add(Integer.parseInt(number));

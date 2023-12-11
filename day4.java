@@ -15,7 +15,7 @@ public class day4 {
         int totalPoints = 0;
         while (scanner.hasNextLine()) {
             String currentLine = scanner.nextLine().trim();
-            lineAnalyzer analyzer = new lineAnalyzer(currentLine);
+            lineAnalyzerPartOne analyzer = new lineAnalyzerPartOne(currentLine);
             ArrayList<Integer> yourWinningNumbers = analyzer.calculateYourWinningNumbers();
 
             if (yourWinningNumbers.size() == 0) {
@@ -30,13 +30,13 @@ public class day4 {
     }
 }
 
-class lineAnalyzer {
+class lineAnalyzerPartOne {
     private String raw;
     private int gameNumber;
     private ArrayList<Integer> winningNumbers;
     private ArrayList<Integer> yourNumbers;
 
-    public lineAnalyzer(String line) {
+    public lineAnalyzerPartOne(String line) {
         this.raw = line;
 
         this.winningNumbers = this.findWinningNumbers();

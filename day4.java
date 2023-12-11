@@ -6,6 +6,20 @@ import java.io.FileNotFoundException;
 public class day4 {
     public static void main(String args[]) throws FileNotFoundException {
         System.out.println(String.format("Part One: %d", runPartOne()));
+        runPartTwo();
+    }
+
+    public static int runPartTwo() throws FileNotFoundException {
+        File inputFile = new File("day4-sample.txt");
+        Scanner scanner = new Scanner(inputFile);
+
+        while (scanner.hasNextLine()) {
+            String currentLine = scanner.nextLine().trim();
+            lineAnalyzerPartTwo analyzer = new lineAnalyzerPartTwo(currentLine);
+        }
+        scanner.close();
+
+        return 0;
     }
 
     public static int runPartOne() throws FileNotFoundException {
@@ -94,5 +108,45 @@ class lineAnalyzerPartOne {
         }
 
         return winningNumbers;
+    }
+}
+
+class lineAnalyzerPartTwo {
+    private String raw;
+    private int gameNumber;
+    
+    public lineAnalyzerPartTwo(String line) {
+        this.raw = line;
+        this.gameNumber = this.findGameNumber();
+    }
+
+    public int winningNumberCount() {
+        ArrayList<Integer> yourNumbers = new ArrayList<>();
+        for (String number: this.raw.split("\\|")[1].trim().split("\\s+")) {
+            yourNumbers.add(Integer.parseInt(number));
+        }
+
+        ArrayList<Integer> winningNumbers = new ArrayList<>();
+        for (String number: this.raw.split(": ")[1].split("\\|")[0].trim().split("\\s+")) {
+            winningNumbers.add(Integer.parseInt(number));
+        }
+
+        int totalWinningNumbers = 0;
+
+        for (int number: yourNumbers) {
+            if (winningNumbers.contains(number)) {
+                totalWinningNumbers++;
+            }
+        }
+
+        return totalWinningNumbers;
+    }
+
+    public int getGameNumber() {
+        return this.gameNumber;
+    }
+
+    private int findGameNumber() {
+        return Integer.parseInt(this.raw.split(": ")[0].split("\\s+")[1]);
     }
 }

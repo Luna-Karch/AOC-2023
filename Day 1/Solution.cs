@@ -5,7 +5,8 @@ namespace Solution {
     public class Solution {
         public static void Main(string[] args) {
             Part1();
-        }
+            Part2();
+        }        
 
         public static void Part1() {
             int total = 0;
@@ -27,7 +28,11 @@ namespace Solution {
                 int constructedNumberAsInt = int.Parse(firstAndLast);
                 total += constructedNumberAsInt;
             }
-            Console.WriteLine(total);
+            Console.WriteLine("Part 1: " + total);
+        }
+
+        public static void Part2() {
+            Console.WriteLine("Hello World!");
         }
     }
 }

@@ -19,6 +19,19 @@ function checkIndexForSymbol(i, j, data) {
     return true; // Otherwise, true
 }
 
+function getAdjacentIndices(i, jstart, jend, data) {
+    // Will check surround indices for existance, if they exist
+    // Checks returns an array of pairs of numbers, containing every
+    // i and j around the selection provided
+    // i -> int
+    // jstart -> int : starting index
+    // jend -> int : ending index
+    // data -> array[string]
+
+    // Implement
+}
+
+
 fs.readFile("sample_input.txt", "utf8", (err, data) => {
     if (err) {
         console.error(err);
